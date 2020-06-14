@@ -6,6 +6,7 @@ const { src, dest, watch, series } = require('gulp'),
   terser = require('gulp-terser-js'),
   rename = require('gulp-rename'),
   sourcemaps = require('gulp-sourcemaps'),
+  autoprefixer = require('gulp-autoprefixer'),
   imagemin = require('gulp-imagemin'),
   changed = require('gulp-changed'),
   newer = require('gulp-newer'),
@@ -22,6 +23,7 @@ const { src, dest, watch, series } = require('gulp'),
 function buildCSS() {
   return src(path.scss)
     .pipe(sourcemaps.init())
+    .pipe(autoprefixer())
     .pipe(changed('./src/css'))
     .pipe(sass().on('error', sass.logError))
     .pipe(rename('style.min.css'))
